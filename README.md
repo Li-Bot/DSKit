@@ -81,12 +81,12 @@ Each node has four subnodes that represent - top left, top right, bottom right a
 
 ```swift
 // Create
-let treeRootRect = DSQuadRect(origin: CGPoint(x: 100.0, y: 0.0), end: CGPoint(x: 100.0, y: 0.0))
-let quadTree = QuadTree<QuadTreeNode<Int>>(rect: treeRootRect)
+let treeRootRect = DSQuadRect(origin: .zero, end: CGPoint(x: 100.0, y: 100.0))
+let quadTree = DSQuadTree<DSQuadTreeNode<Int>>(rect: treeRootRect)
 // Insert
-var result = quadTree.insert(node: QuadTreeNode(position: CGPoint(x: 10.0, y: 10.0), data: 1))
-result = quadTree.insert(node: QuadTreeNode(position: CGPoint(x: 12.0, y: 12.0), data: 1))
-result = quadTree.insert(node: QuadTreeNode(position: CGPoint(x: 70.0, y: 90.0), data: 1))
+var result = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 10.0, y: 10.0), data: 1))
+result = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 12.0, y: 12.0), data: 1))
+result = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 70.0, y: 90.0), data: 1))
 // Search
 let foundNode = quadTree.search(at: CGPoint(x: 10.0, y: 10.0))
 let foundNodes = quadTree.search(at: DSCircle(center: CGPoint(x: 50.0, y: 50.0), radius: 25.0))
