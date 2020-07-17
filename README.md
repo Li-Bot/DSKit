@@ -89,7 +89,15 @@ result = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 12.0, y: 12.0
 result = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 70.0, y: 90.0), data: 1))
 // Search
 let foundNode = quadTree.search(at: CGPoint(x: 10.0, y: 10.0))
-let foundNodes = quadTree.search(at: DSCircle(center: CGPoint(x: 50.0, y: 50.0), radius: 25.0))
+let circle = DSCircle(center: CGPoint(x: 50.0, y: 50.0), radius: 25.0)
+let foundNodes = quadTree.search(at: circle)
+```
+
+#### QaudTree Image Renderer
+Render QuadTree into an image.
+```swift
+let renderer = DSQuadTreeRenderer()
+let image = renderer.draw(tree: quadTree, highlight: circle)
 ```
 
 ## Future
