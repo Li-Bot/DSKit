@@ -13,10 +13,10 @@ import CoreGraphics.CGGeometry
 /**
  QuadTree Data Structure.
  */
-public final class QuadTree<NodeDataType> {
+public final class DSQuadTree<NodeDataType> {
     
     /// The main quadrant of the tree.
-    internal let root: Quadrant<NodeDataType>
+    internal let root: DSQuadrant<NodeDataType>
     /// Maxium number of nodes in a quadrant.
     public let maxNodes: Int?
     /// Maximum depth of the quadtree.
@@ -30,7 +30,7 @@ public final class QuadTree<NodeDataType> {
      - Parameter maxDepth: Maximum depth of the quadtree.
      */
     public init(rect: DSQuadRect, maxNodes: Int? = nil, maxDepth: Int? = nil) {
-        self.root = Quadrant(bounds: rect)
+        self.root = DSQuadrant(bounds: rect)
         self.maxDepth = maxDepth
         self.maxNodes = maxNodes
     }
@@ -42,7 +42,7 @@ public final class QuadTree<NodeDataType> {
      
      - Returns: Yes, if node has been inserted, otherwise, when you have defined `maxNodes` and `maxDepth` and the quadtree is saturated, then no.
      */
-    public func insert(node: QuadTreeNode<NodeDataType>) -> Bool {
+    public func insert(node: DSQuadTreeNode<NodeDataType>) -> Bool {
         return insert(node: node, in: root, depth: 0)
     }
     
@@ -53,7 +53,7 @@ public final class QuadTree<NodeDataType> {
      
      - Returns: `QuadTreeNode<NodeDataType>`, if a node exists at given `position`, otherwise nil.
      */
-    public func search(at position: CGPoint) -> QuadTreeNode<NodeDataType>? {
+    public func search(at position: CGPoint) -> DSQuadTreeNode<NodeDataType>? {
         var quadrant = root
         if !quadrant.bounds.contains(point: position) {
             return nil
@@ -79,11 +79,11 @@ public final class QuadTree<NodeDataType> {
     
      - Returns: `QuadTreeNode<NodeDataType>`, if a node exists at given `position`, otherwise nil.
     */
-    public func search(at circle: DSCircle) -> [QuadTreeNode<NodeDataType>] {
+    public func search(at circle: DSCircle) -> [DSQuadTreeNode<NodeDataType>] {
         let currentQuadrant = root
-        let quadrants = DSQueue<Quadrant<NodeDataType>>()
+        let quadrants = DSQueue<DSQuadrant<NodeDataType>>()
         quadrants.enqueue(currentQuadrant)
-        var nodes = [QuadTreeNode<NodeDataType>]()
+        var nodes = [DSQuadTreeNode<NodeDataType>]()
         if !currentQuadrant.bounds.contains(circle: circle) {
             return []
         }
@@ -118,12 +118,12 @@ public final class QuadTree<NodeDataType> {
     
      - Returns: `QuadTreeNode<NodeDataType>`, if a node exists at given `position`, otherwise nil.
     */
-    internal func searchR(at circle: DSCircle, quadrant: Quadrant<NodeDataType>? = nil) -> [QuadTreeNode<NodeDataType>]? {
+    internal func searchR(at circle: DSCircle, quadrant: DSQuadrant<NodeDataType>? = nil) -> [DSQuadTreeNode<NodeDataType>]? {
         let currentQuadrant = quadrant ?? root
         if !currentQuadrant.bounds.contains(circle: circle) {
             return nil
         }
-        var nodes = [QuadTreeNode<NodeDataType>]()
+        var nodes = [DSQuadTreeNode<NodeDataType>]()
         if let subquadrant = currentQuadrant.topLeft, subquadrant.bounds.contains(circle: circle) {
             if let subnodes = searchR(at: circle, quadrant: subquadrant) {
                 nodes.append(contentsOf: subnodes)
@@ -163,8 +163,8 @@ public final class QuadTree<NodeDataType> {
     
      - Returns: Yes, if node has been inserted, otherwise, when you have defined `maxNodes` and `maxDepth` and the quadtree is saturated, then no.
     */
-    private func insert(node: QuadTreeNode<NodeDataType>, in quadrant: Quadrant<NodeDataType>, depth: Int) -> Bool {
-        var quadrant: Quadrant = quadrant
+    private func insert(node: DSQuadTreeNode<NodeDataType>, in quadrant: DSQuadrant<NodeDataType>, depth: Int) -> Bool {
+        var quadrant: DSQuadrant = quadrant
         if !quadrant.bounds.contains(point: node.position) {
             return false
         }
@@ -201,11 +201,11 @@ public final class QuadTree<NodeDataType> {
      
      - Returns: Yes, if node has been inserted, otherwise, when you have defined `maxNodes` and `maxDepth` and the quadtree is saturated, then no.
      */
-    private func split(quadrant: Quadrant<NodeDataType>, depth: Int) -> Bool {
-        quadrant.topLeft = Quadrant(bounds: quadrant.bounds.topLeft)
-        quadrant.topRight = Quadrant(bounds: quadrant.bounds.topRight)
-        quadrant.bottomLeft = Quadrant(bounds: quadrant.bounds.bottomLeft)
-        quadrant.bottomRight = Quadrant(bounds: quadrant.bounds.bottomRight)
+    private func split(quadrant: DSQuadrant<NodeDataType>, depth: Int) -> Bool {
+        quadrant.topLeft = DSQuadrant(bounds: quadrant.bounds.topLeft)
+        quadrant.topRight = DSQuadrant(bounds: quadrant.bounds.topRight)
+        quadrant.bottomLeft = DSQuadrant(bounds: quadrant.bounds.bottomLeft)
+        quadrant.bottomRight = DSQuadrant(bounds: quadrant.bounds.bottomRight)
         
         return rearrange(quadrant: quadrant, depth: depth)
     }
@@ -218,7 +218,7 @@ public final class QuadTree<NodeDataType> {
     
      - Returns: Yes, if node has been inserted, otherwise, when you have defined `maxNodes` and `maxDepth` and the quadtree is saturated, then no.
     */
-    private func rearrange(quadrant: Quadrant<NodeDataType>, depth: Int) -> Bool {
+    private func rearrange(quadrant: DSQuadrant<NodeDataType>, depth: Int) -> Bool {
         var result = true
         for node in quadrant.nodes {
             let subquadrant = quadrant.getQuadrant(at: node.position)!

@@ -64,7 +64,7 @@ public final class QuadTreeRenderer {
      
      - Returns: Image that represents given `tree`.
      */
-    public func draw<NodeDataType>(tree: QuadTree<NodeDataType>, highlight: DSCircle? = nil) -> Image {
+    public func draw<NodeDataType>(tree: DSQuadTree<NodeDataType>, highlight: DSCircle? = nil) -> Image {
 #if os(iOS)
         UIGraphicsBeginImageContextWithOptions(tree.root.bounds.size, false, UIScreen.main.scale)
         let context = UIGraphicsGetCurrentContext()!
@@ -109,7 +109,7 @@ public final class QuadTreeRenderer {
             let quadrant = quadrants.removeLast()
             
             if quadrant.nodes.isEmpty {
-                var localQuadrants = [Quadrant<NodeDataType>]()
+                var localQuadrants = [DSQuadrant<NodeDataType>]()
                 if let quadrant = quadrant.topLeft { localQuadrants.append(quadrant) }
                 if let quadrant = quadrant.topRight { localQuadrants.append(quadrant) }
                 if let quadrant = quadrant.bottomLeft { localQuadrants.append(quadrant) }

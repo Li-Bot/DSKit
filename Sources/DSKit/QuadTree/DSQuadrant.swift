@@ -13,19 +13,19 @@ import CoreGraphics.CGGeometry
 /**
  Quadrant Data Structure for a QuadTree.
  */
-internal final class Quadrant<NodeDataType> {
+internal final class DSQuadrant<NodeDataType> {
     
     /// Top-left subquadrant.
-    internal var topLeft: Quadrant<NodeDataType>?
+    internal var topLeft: DSQuadrant<NodeDataType>?
     /// Top-right subquadrant.
-    internal var topRight: Quadrant<NodeDataType>?
+    internal var topRight: DSQuadrant<NodeDataType>?
     /// Bottom-left subquadrant.
-    internal var bottomRight: Quadrant<NodeDataType>?
+    internal var bottomRight: DSQuadrant<NodeDataType>?
     /// Bottom-right subquadrant.
-    internal var bottomLeft: Quadrant<NodeDataType>?
+    internal var bottomLeft: DSQuadrant<NodeDataType>?
     
     /// Data Nodes.
-    internal var nodes = [QuadTreeNode<NodeDataType>]()
+    internal var nodes = [DSQuadTreeNode<NodeDataType>]()
     
     /// Bounds of the quadrant.
     internal let bounds: DSQuadRect
@@ -36,7 +36,7 @@ internal final class Quadrant<NodeDataType> {
      - Parameter bounds: Bounds of a new quadrant.
      - Parameter node: Data Node.
      */
-    internal init(bounds: DSQuadRect, node: QuadTreeNode<NodeDataType>? = nil) {
+    internal init(bounds: DSQuadRect, node: DSQuadTreeNode<NodeDataType>? = nil) {
         self.bounds = bounds
         if let node = node {
             nodes.append(node)
@@ -50,7 +50,7 @@ internal final class Quadrant<NodeDataType> {
      
      - Returns: `Quadrant<NodeDataType>`, if any subquadrant of current quadrant contains given `point`, otherwise nil.
      */
-    internal func getQuadrant(at point: CGPoint) -> Quadrant<NodeDataType>? {
+    internal func getQuadrant(at point: CGPoint) -> DSQuadrant<NodeDataType>? {
         if !bounds.contains(point: point) {
             return nil
         }
@@ -73,7 +73,7 @@ internal final class Quadrant<NodeDataType> {
     
      - Returns: Array of `Quadrant<NodeDataType>`, that intersect given `circle`, otherwise nil.
     */
-    internal func getQuadrants(at cirle: DSCircle) -> [Quadrant<NodeDataType>]? {
+    internal func getQuadrants(at cirle: DSCircle) -> [DSQuadrant<NodeDataType>]? {
         if !bounds.contains(circle: cirle) {
             return nil
         }

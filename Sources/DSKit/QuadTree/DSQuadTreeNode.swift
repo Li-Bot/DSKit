@@ -13,7 +13,7 @@ import CoreGraphics.CGGeometry
 /**
  QuadTree Node.
  */
-public final class QuadTreeNode<DataType> {
+public final class DSQuadTreeNode<DataType> {
     
     /// Position of the node in a quadtree.
     public let position: CGPoint

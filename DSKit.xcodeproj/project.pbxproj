@@ -47,7 +47,6 @@
 		1866185524C0A36200B23C2E /* DSQuadRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249A3724BF34E100E92BB3 /* DSQuadRect.swift */; };
 		1866185624C0A36200B23C2E /* DSQuadrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249A3824BF34E100E92BB3 /* DSQuadrant.swift */; };
 		1866185724C0A36200B23C2E /* DSQuadTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249A3B24BF34E100E92BB3 /* DSQuadTreeNode.swift */; };
-		1866185824C0A36200B23C2E /* DSQuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249A3924BF34E100E92BB3 /* DSQuadTree.swift */; };
 		1866185924C0A36200B23C2E /* DSQuadTreeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249A3A24BF34E100E92BB3 /* DSQuadTreeRenderer.swift */; };
 		1866188624C1D83F00B23C2E /* LinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866188524C1D83F00B23C2E /* LinkedListTests.swift */; };
 		1866188724C1D83F00B23C2E /* LinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866188524C1D83F00B23C2E /* LinkedListTests.swift */; };
@@ -55,6 +54,7 @@
 		1866188A24C1D85000B23C2E /* QueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866188824C1D85000B23C2E /* QueueTests.swift */; };
 		1866188C24C1D85F00B23C2E /* QuadTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866188B24C1D85F00B23C2E /* QuadTreeTests.swift */; };
 		1866188D24C1D85F00B23C2E /* QuadTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1866188B24C1D85F00B23C2E /* QuadTreeTests.swift */; };
+		1866188E24C1F2B700B23C2E /* DSQuadTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18249A3924BF34E100E92BB3 /* DSQuadTree.swift */; };
 		18AEF27524BCA2A4005B6574 /* DSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AEF26B24BCA2A4005B6574 /* DSKit.framework */; };
 		18AEF27C24BCA2A4005B6574 /* DSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 18AEF26E24BCA2A4005B6574 /* DSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18AEF2AA24BCC1FB005B6574 /* DSLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEF29324BCC1FA005B6574 /* DSLinkedList.swift */; };
@@ -183,7 +183,7 @@
 				18AEF28524BCC12E005B6574 /* Sources */,
 				18AEF28724BCC153005B6574 /* Tests */,
 				18AEF26D24BCA2A4005B6574 /* DSKit-iOS */,
-				18AEF27824BCA2A4005B6574 /* DSKitTests-iOS */,
+				18AEF27824BCA2A4005B6574 /* DSKit-iOSTests */,
 				1866182A24C0A2CA00B23C2E /* DSKit-macOS */,
 				1866183524C0A2CB00B23C2E /* DSKit-macOSTests */,
 				18AEF26C24BCA2A4005B6574 /* Products */,
@@ -210,12 +210,12 @@
 			path = "DSKit-iOS";
 			sourceTree = "<group>";
 		};
-		18AEF27824BCA2A4005B6574 /* DSKitTests-iOS */ = {
+		18AEF27824BCA2A4005B6574 /* DSKit-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
 				18AEF27B24BCA2A4005B6574 /* Info.plist */,
 			);
-			path = "DSKitTests-iOS";
+			path = "DSKit-iOSTests";
 			sourceTree = "<group>";
 		};
 		18AEF28524BCC12E005B6574 /* Sources */ = {
@@ -494,8 +494,8 @@
 				1866185224C0A36200B23C2E /* DSLinkedListNode.swift in Sources */,
 				1866185724C0A36200B23C2E /* DSQuadTreeNode.swift in Sources */,
 				1866185624C0A36200B23C2E /* DSQuadrant.swift in Sources */,
-				1866185824C0A36200B23C2E /* DSQuadTree.swift in Sources */,
 				1866185324C0A36200B23C2E /* DSQueueProtocol.swift in Sources */,
+				1866188E24C1F2B700B23C2E /* DSQuadTree.swift in Sources */,
 				1866185024C0A36200B23C2E /* DSLinkedList.swift in Sources */,
 				1866185524C0A36200B23C2E /* DSQuadRect.swift in Sources */,
 			);
@@ -616,7 +616,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "DSKit macOSTests/Info.plist";
+				INFOPLIST_FILE = "DSKit-macOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -636,7 +636,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "DSKit macOSTests/Info.plist";
+				INFOPLIST_FILE = "DSKit-macOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

@@ -10,6 +10,14 @@ import XCTest
 
 class QuadTreeTests: XCTestCase {
 
+    private var quadTree: DSQuadTree<Int>!
+    
+    override func setUp() {
+        super.setUp()
+        let rect = DSQuadRect(origin:.zero, end: CGPoint(x: 100.0, y: 100.0))
+        quadTree = DSQuadTree(rect: rect)
+    }
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -18,16 +26,22 @@ class QuadTreeTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInsert() {
+        let result = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 10.0, y: 10.0), data: 1))
+        XCTAssert(result == true)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testSearchNode() {
+        _ = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 40.0, y: 40.0), data: 1))
+        let foundNode = quadTree.search(at: CGPoint(x: 40.0, y: 40.0))
+        XCTAssert(foundNode?.data == 1)
+    }
+    
+    func testSearchNodes() {
+        _ = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 40.0, y: 40.0), data: 1))
+        _ = quadTree.insert(node: DSQuadTreeNode(position: CGPoint(x: 60.0, y: 60.0), data: 1))
+        let foundNodes = quadTree.search(at: DSCircle(center: CGPoint(x: 50.0, y: 50.0), radius: 25.0))
+        XCTAssert(foundNodes.count == 2)
     }
 
 }
